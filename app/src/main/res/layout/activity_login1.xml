@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="48dp">
+
+
+    <LinearLayout
+        android:id="@+id/username_ll"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <TextView
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:text="用户名:" />
+
+        <EditText
+            android:id="@+id/username_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:hint="请输入用户名"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/password_ll"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/username_ll">
+
+        <TextView
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:text="密码:" />
+
+        <EditText
+            android:id="@+id/password_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:hint="请输入密码"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_ll"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/password_ll">
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="登陆" />
+
+        <Button
+            android:id="@+id/clear_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="清除" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,46 +1,38 @@
-package cn.smartsean.mvptest.login;
+package cn.smartsean.mvptest.login1;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import javax.inject.Inject;
-
+import cn.smartsean.base.BaseMvpActivity;
 import cn.smartsean.mvptest.MainActivity;
 import cn.smartsean.mvptest.R;
 import cn.smartsean.mvptest.bean.UserInfoModel;
-import cn.smartsean.mvptest.login.di.DaggerLoginActivityComponent;
-import cn.smartsean.mvptest.login.di.LoginModule;
+import cn.smartsean.mvptest.login1.di.DaggerLogin1Component;
+import cn.smartsean.mvptest.login1.di.Login1Module;
 
-/**
- * Created by smartsean on 2018/1/10.
- */
-public class LoginActivity extends AppCompatActivity implements LoginContract.ILoginView {
-
-    private static final String TAG = "LoginActivity";
+public class Login1Activity extends BaseMvpActivity<Login1Presenter> implements Login1Contract.ILoginView {
 
     private EditText usernameEt, passwordEt;
     private Button loginBtn, clearBtn;
     private ProgressDialog progressDialog;
 
-    @Inject
-    LoginPresenter loginPresenter;
+    private Context mContext;
+
+    private static final String TAG = "Login1Activity";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login1);
         initView();
-        DaggerLoginActivityComponent.builder()
-                .loginModule(new LoginModule(this))
-                .build()
-                .inject(this);
+        mContext = this;
+        DaggerLogin1Component.builder().login1Module(new Login1Module(this)).build().inject(this);
     }
 
     private void initView() {
@@ -51,13 +43,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.IL
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginPresenter.login();
+                mPresenter.login();
             }
         });
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginPresenter.clear();
+                mPresenter.clear();
             }
         });
         progressDialog = new ProgressDialog(this);
@@ -103,6 +95,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.IL
     @Override
     public void showFailedError() {
         Log.d(TAG, "showFailedError: 登陆失败");
-        Toast.makeText(LoginActivity.this, "登陆失败，请重新尝试", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "登陆失败，请重新尝试", Toast.LENGTH_SHORT).show();
     }
 }

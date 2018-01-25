@@ -1,17 +1,19 @@
-package cn.smartsean.mvptest.login;
+package cn.smartsean.mvptest.login1;
 
+import cn.smartsean.base.BaseModel;
+import cn.smartsean.base.BaseView;
 import cn.smartsean.mvptest.bean.UserInfoModel;
 
 /**
  * 定义 View 和 Model 层规则
  * Created by smartsean on 2018/1/10.
  */
-public interface LoginContract {
-    interface ILoginModel {
+public interface Login1Contract {
+    interface ILoginModel extends BaseModel{
         void login(String username, String password, OnLoginListener loginListener);
     }
 
-    interface ILoginView {
+    interface ILoginView extends BaseView{
 
         String getUserName();
 
@@ -29,7 +31,6 @@ public interface LoginContract {
 
         void showFailedError();
     }
-
 
     interface OnLoginListener{
         void loginSuccess(UserInfoModel userInfoModel);
