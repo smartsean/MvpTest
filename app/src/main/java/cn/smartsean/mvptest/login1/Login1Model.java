@@ -39,6 +39,6 @@ public class Login1Model implements Login1Contract.ILoginModel {
 
     @Override
     public void onDestroy() {
-
+        // TODO: 2018/1/25 销毁持有的引用
     }
 }

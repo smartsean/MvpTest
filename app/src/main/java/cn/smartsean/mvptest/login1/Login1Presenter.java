@@ -51,6 +51,12 @@ public class Login1Presenter extends BasePresenter<Login1Contract.ILoginModel, L
     }
 
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // TODO: 2018/1/25 销毁持有的引用
+    }
+
     /**
      * 清除账户名和密码
      */
